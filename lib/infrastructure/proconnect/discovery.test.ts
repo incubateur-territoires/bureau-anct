@@ -8,6 +8,7 @@ const ISSUER = "https://proconnect.test.gouv.fr"
 const DISCOVERY = {
   issuer: ISSUER,
   jwks_uri: `${ISSUER}/jwks`,
+  userinfo_endpoint: `${ISSUER}/oauth/userinfo`,
 }
 
 function mockDiscoveryResponse(status = 200) {

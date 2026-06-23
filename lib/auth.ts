@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { authConfig } from "./auth.config"
 import { parseProConnectUserinfo } from "./infrastructure/proconnect/userinfo"
+import { getOidcConfig } from "./infrastructure/proconnect/discovery"
 import { authEnabled, authSecret, devBypassEmail, env } from "./env"
 
 export { authEnabled } from "./env"
@@ -51,7 +52,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             },
           },
           async profile(_profile, tokens) {
-            const res = await fetch(`${env.PROCONNECT_ISSUER}/userinfo`, {
+            // L'endpoint userinfo est lu depuis le discovery : ProConnect le
+            // sert sur /oauth/userinfo, pas sur `${issuer}/userinfo`.
+            const { userinfo_endpoint } = await getOidcConfig()
+            const res = await fetch(userinfo_endpoint, {
               headers: { Authorization: `Bearer ${tokens.access_token}` },
             })
             if (!res.ok) {

@@ -13,7 +13,6 @@
   ],
   "env": {
     "NODE_ENV": "production",
-    "NEXTAUTH_URL": "$SCALINGO_APP_URL",
     "AUTH_ENABLED": "true"
   },
   "notifications": {

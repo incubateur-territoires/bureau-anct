@@ -4,6 +4,7 @@ import { z } from "zod"
 const oidcConfigSchema = z.object({
   issuer: z.string(),
   jwks_uri: z.string().url(),
+  userinfo_endpoint: z.string().url(),
 })
 
 type OidcConfig = z.infer<typeof oidcConfigSchema>
