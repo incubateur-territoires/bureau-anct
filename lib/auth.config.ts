@@ -11,6 +11,9 @@ export const authConfig: NextAuthConfig = {
   providers: [],
   session: { strategy: "jwt" },
   pages: { signIn: "/connexion" },
+  // Déploiement auto-hébergé (Scalingo) derrière un proxy de confiance.
+  // Sans cela, Auth.js v5 lève `UntrustedHost` en production.
+  trustHost: true,
   callbacks: {
     async jwt({ token, account }) {
       if (account) token.idToken = account.id_token
