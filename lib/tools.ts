@@ -29,7 +29,7 @@ export const tools: Tool[] = [
     id: "visio",
     name: "Visio",
     description: "Visioconférence et transcription",
-    url: "https://visio.numerique.gouv.fr",
+    url: "https://visio.suite.anct.gouv.fr",
     icon: "/icons/visio.png",
     beta: true,
     targetBlank: true,
